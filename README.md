@@ -1,61 +1,57 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Dukunify - Sistem Manajemen Booking Jasa Sewa Dukun
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistem manajemen berbasis web yang dirancang untuk mengelola pemesanan (booking) dan penyelesaian jasa spiritual/supranatural.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Detail Proyek
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* **Nama Kelompok:**
+    * Rilga Lingga Wisesa    
+    * Raden Daffa Firasyan Adikusumah
+* **Nama Team:** Dukunify
+* **Nama Project:** Dukunify - Sistem Sewa Jasa Dukun
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Daftar Fitur
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Sistem ini memiliki dua peran utama: **Admin** dan **User (Anggota/Klien)**.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Fitur Umum
+* Setiap pengguna (Admin/User) harus melakukan **Login** untuk dapat mengakses *web*.
+* User harus terdaftar sebagai anggota untuk dapat mem-booking jasa.
+* Satu user hanya dapat memiliki satu profil.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Fitur User (Anggota/Klien)
+* Dapat mengubah data profilnya masing-masing.
+* Dapat melihat katalog jasa yang tersedia.
+* Dapat melakukan pencarian jasa berdasarkan nama jasa.
+* Hanya dapat mem-booking **maksimal 2 jasa** yang statusnya masih aktif ('dipesan').
+* Hanya dapat melihat daftar jasa yang sedang di-booking olehnya.
 
-## Laravel Sponsors
+### Fitur Admin
+* Dapat melakukan **CRUD** (Create, Read, Update, Delete) untuk data **Jasa/Layanan**.
+* Dapat melakukan **CRUD** (Create, Read, Update, Delete) untuk data **Kategori Jasa**.
+* Dapat melakukan **CRUD** (Create, Read, Update, Delete) untuk data **User (Anggota)**.
+* Hanya Admin yang dapat memproses **Penyelesaian Jasa** (mengubah status booking menjadi 'selesai').
+* Admin dapat melihat daftar semua jasa yang sedang di-booking oleh semua *user*.
+* Admin dapat melihat dan **mencetak riwayat** booking jasa dari semua *user*.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Aturan Bisnis
+* **Jasa:** `nama_jasa` boleh sama, namun `kode_jasa` harus unik.
+* **Kategori:** Setiap jasa dapat memiliki lebih dari satu kategori (Many-to-Many).
+* **Booking:** Aturan "maksimal 5 hari" dan "denda" diubah menjadi proses konfirmasi oleh Admin. Klien harus menghubungi admin untuk konfirmasi jadwal dan penyelesaian.
+* **Validasi:** Setiap *field input* yang wajib diisi (seperti nama, email, kode jasa) memiliki validasi `required`.
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Skema Database (ERD)
 
-## Contributing
+![Skema Database Dukunify]([GANTI_DENGAN_PATH_GAMBAR_ERD_ANDA.png])
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## Demo Website
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+[Tonton Video Demo Penjelasan Website di Sini]([LINK_VIDEO_DEMO_ANDA])
