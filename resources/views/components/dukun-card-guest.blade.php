@@ -1,16 +1,9 @@
 @props(['dukun'])
 
-{{-- 
-    MODIFIKASI:
-    - Mengganti 'bg-white', 'shadow-sm', 'border-gray-200'
-    - Menambahkan class 'glass-dark' (dari welcome.blade.php)
-    - Menyesuaikan 'rounded-lg' -> 'rounded-2xl'
-    - Menambahkan 'shadow-lg' dan 'shadow-purple-900/50'
---}}
 <div class="glass-dark overflow-hidden shadow-lg shadow-purple-900/50 sm:rounded-2xl flex flex-col"> 
     
     {{-- Gambar Dukun --}}
-    <div class="h-48 w-full bg-gray-800 flex-shrink-0"> {{-- MODIFIKASI: Latar placeholder digelapkan --}}
+    <div class="h-48 w-full bg-gray-800 flex-shrink-0"> {{-- Latar belakang placeholder digelapkan --}}
         @if ($dukun->image)
             <img src="{{ Storage::url($dukun->image) }}" alt="{{ $dukun->nama_dukun }}" class="h-full w-full object-cover">
         @else
@@ -24,7 +17,7 @@
     </div>
     {{-- Akhir Gambar --}}
 
-    <div class="p-6 flex flex-col flex-grow">
+    <div class="p-6 flex flex-col flex-grow"> 
         {{-- Kategori --}}
         <div class="mb-2">
             @forelse ($dukun->categories as $category)
@@ -61,28 +54,14 @@
             <span class="text-sm text-purple-400/80">/ Hari</span>
         </div>
 
-        {{-- Spacer agar tombol di bawah --}}
+        {{-- Spacer --}}
         <div class="flex-grow"></div> 
 
-        {{-- Tombol Aksi --}}
         <div class="mt-4">
-            <div class="flex items-center space-x-2">
-                
-                {{-- MODIFIKASI: Mengubah style tombol 'indigo' menjadi 'violet' (lebih tematik) --}}
-                <a href="{{ route('catalog.show', $dukun->id) }}" class="flex-1 text-center inline-flex items-center justify-center px-4 py-2 bg-violet-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-violet-700 active:bg-violet-900 focus:outline-none focus:border-violet-900 focus:ring ring-violet-300 disabled:opacity-25 transition ease-in-out duration-150 shadow-md shadow-violet-500/20">
-                    Lihat Detail
-                </a>
-
-                <form action="{{ route('cart.store', $dukun) }}" method="POST">
-                    @csrf
-                    {{-- MODIFIKASI: Mengubah tombol 'gray' menjadi tombol sekunder tematik (ungu transparan) --}}
-                    <button type="submit" title="Tambah ke Keranjang" class="p-2 bg-purple-500/20 border border-purple-600/50 rounded-md font-semibold text-xs text-purple-300 uppercase tracking-widest hover:bg-purple-500/30 active:bg-purple-500/40 focus:outline-none focus:border-purple-400 focus:ring ring-purple-400/50 disabled:opacity-25 transition ease-in-out duration-150">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-                        </svg>
-                    </button>
-                </form>
-            </div>
+            <a href="{{ route('login') }}" 
+               class="w-full text-center inline-flex items-center justify-center px-4 py-2 bg-purple-500/10 border border-purple-600/50 rounded-lg font-semibold text-xs text-purple-300 uppercase tracking-widest hover:bg-purple-500/30 hover:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-25 transition ease-in-out duration-150">
+                Login untuk Menyewa
+            </a>
         </div>
     </div>
 </div>

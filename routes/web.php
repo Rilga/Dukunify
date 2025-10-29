@@ -13,11 +13,10 @@ use App\Http\Controllers\Admin\DukunController;
 use App\Http\Controllers\Admin\BookingApprovalController;
 use App\Http\Controllers\Admin\BookingReportController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\WelcomeController;
 
 // Halaman Landing Page
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
 Route::get('/dashboard', function () {
     if (Auth::user()->role === 'admin') {

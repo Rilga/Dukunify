@@ -1,14 +1,31 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+{{-- 
+    MODIFIKASI: 
+    - Mengganti 'bg-white' dengan 'glass-dark' (dari welcome.blade.php)
+    - Mengganti border 'border-gray-100' dengan 'border-purple-800/30'
+    - Menambahkan 'backdrop-blur-xl' untuk efek glassmorphism
+--}}
+<nav x-data="{ open: false }" class="glass-dark border-b border-purple-800/30 backdrop-blur-xl">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                    <a href="{{ route('dashboard') }}" class="group">
+                        {{-- 
+                            MODIFIKASI: 
+                            - Mengganti 'text-gray-800' dengan 'text-purple-400'
+                            - Menambahkan 'animate-pulse-glow' (dari welcome.blade.php)
+                        --}}
+                        <x-application-logo class="block h-9 w-auto fill-current text-purple-400 animate-pulse-glow" />
                     </a>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    {{-- 
+                        CATATAN: 
+                        Tampilan link ini (x-nav-link) diatur DI DALAM file komponennya.
+                        Anda harus mengedit 'resources/views/components/nav-link.blade.php' 
+                        (Lihat Poin 2 di bawah).
+                    --}}
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
@@ -24,7 +41,9 @@
                             {{ __('Klien') }}
                         </x-nav-link>
 
-                        <div class="h-16 flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500">|</div>
+                        {{-- MODIFIKASI: Mengganti warna separator --}}
+                        <div class="h-16 flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-purple-600/50">|</div>
+                        
                         <x-nav-link :href="route('admin.approvals.index')" :active="request()->routeIs('admin.approvals.index')">
                             {{ __('Persetujuan') }}
                         </x-nav-link>
@@ -50,9 +69,20 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                {{-- 
+                    CATATAN: 
+                    Latar belakang dropdown (x-dropdown) diatur DI DALAM file komponennya.
+                    Anda harus mengedit 'resources/views/components/dropdown.blade.php' 
+                    (Lihat Poin 3 di bawah).
+                --}}
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                        {{-- 
+                            MODIFIKASI: 
+                            - Mengganti 'text-gray-500', 'bg-white', 'hover:text-gray-700'
+                            - Menjadi 'text-purple-300', 'bg-transparent', 'hover:text-purple-100'
+                        --}}
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-purple-300 bg-transparent hover:text-purple-100 focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -61,6 +91,12 @@
                             </div>
                         </button>
                     </x-slot>
+
+                    {{-- 
+                        CATATAN: 
+                        Tampilan link dropdown (x-dropdown-link) diatur DI DALAM file komponennya.
+                        Anda harus mengedit 'resources/views/components/dropdown-link.blade.php' 
+                    --}}
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
@@ -77,8 +113,14 @@
                 </x-dropdown>
             </div>
 
+            {{-- Hamburger Menu (Mobile) --}}
             <div class="-me-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                {{-- 
+                    MODIFIKASI: 
+                    - Mengganti warna ikon dan 'hover:bg-gray-100'
+                    - Menjadi 'text-purple-400' dan 'hover:bg-purple-900/50'
+                --}}
+                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-purple-400 hover:text-purple-300 hover:bg-purple-900/50 focus:outline-none focus:bg-purple-900/50 focus:text-purple-300 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -88,15 +130,27 @@
         </div>
     </div>
 
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    {{-- Mobile Menu Panel --}}
+    {{-- 
+        MODIFIKASI: 
+        - Menambahkan 'bg-gray-900/95' dan 'backdrop-blur-md'
+        - Ini karena panel mobile terpisah dari nav utama dan butuh latarnya sendiri.
+    --}}
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden bg-gray-900/95 backdrop-blur-md">
         <div class="pt-2 pb-3 space-y-1">
+            {{-- 
+                CATATAN: 
+                Tampilan link ini (x-responsive-nav-link) diatur DI DALAM file komponennya.
+                Anda harus mengedit 'resources/views/components/responsive-nav-link.blade.php' 
+            --}}
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
             @if (Auth::user()->role === 'admin')
-                <div class="border-t border-gray-200 pt-2 mt-2">
-                    <div class="px-4 text-xs font-semibold text-gray-500 uppercase">Manajemen Data</div>
+                {{-- MODIFIKASI: Mengganti 'border-gray-200' dan 'text-gray-500' --}}
+                <div class="border-t border-purple-700/50 pt-2 mt-2">
+                    <div class="px-4 text-xs font-semibold text-purple-400 uppercase">Manajemen Data</div>
                     <x-responsive-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.*')">
                         {{ __('Kategori') }}
                     </x-responsive-nav-link>
@@ -107,8 +161,9 @@
                         {{ __('Klien') }}
                     </x-responsive-nav-link>
                 </div>
-                <div class="border-t border-gray-200 pt-2 mt-2">
-                    <div class="px-4 text-xs font-semibold text-gray-500 uppercase">Manajemen Booking</div>
+                {{-- MODIFIKASI: Mengganti 'border-gray-200' dan 'text-gray-500' --}}
+                <div class="border-t border-purple-700/50 pt-2 mt-2">
+                    <div class="px-4 text-xs font-semibold text-purple-400 uppercase">Manajemen Booking</div>
                     <x-responsive-nav-link :href="route('admin.approvals.index')" :active="request()->routeIs('admin.approvals.index')">
                         {{ __('Persetujuan') }}
                     </x-responsive-nav-link>
@@ -131,10 +186,14 @@
             @endif
         </div>
 
-        <div class="pt-4 pb-1 border-t border-gray-200">
+        {{-- Mobile Menu User Info --}}
+        {{-- MODIFIKASI: Mengganti 'border-gray-200' --}}
+        <div class="pt-4 pb-1 border-t border-purple-700/50">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                {{-- MODIFIKASI: Mengganti 'text-gray-800' -> 'text-white' --}}
+                <div class="font-medium text-base text-white">{{ Auth::user()->name }}</div>
+                {{-- MODIFIKASI: Mengganti 'text-gray-500' -> 'text-purple-300' --}}
+                <div class="font-medium text-sm text-purple-300">{{ Auth::user()->email }}</div>
             </div>
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
