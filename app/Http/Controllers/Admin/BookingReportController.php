@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BookingReportController extends Controller
 {
@@ -30,10 +31,12 @@ class BookingReportController extends Controller
     public function printHistory(Request $request)
     {
         $query = $this->buildHistoryQuery($request);
-
         $historyBookings = $query->orderBy('created_at', 'desc')->get();
 
-        return view('admin.reports.print', compact('historyBookings'));
+        $pdf = Pdf::loadView('admin.reports.print', compact('historyBookings'));
+        
+        $fileName = 'Laporan-Riwayat-Booking-' . now()->format('Y-m-d') . '.pdf';
+        return $pdf->download($fileName); 
     }
 
     private function buildHistoryQuery(Request $request)

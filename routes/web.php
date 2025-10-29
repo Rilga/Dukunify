@@ -28,7 +28,6 @@ Route::get('/dashboard', function () {
 
 // === GRUP RUTE KLIEN ===
 Route::middleware(['auth', 'verified', 'user'])->group(function () {
-
     Route::get('/user/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
 
     Route::get('/catalog/{dukun}', [CatalogController::class, 'show'])->name('catalog.show');
@@ -44,14 +43,13 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
     Route::post('/my-bookings/{booking}/pay-denda', [BookingController::class, 'payDenda'])
          ->name('booking.payDenda');
     
-
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// === GRUP RUTE ADMIN ===
 Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('categories', CategoryController::class);
@@ -67,12 +65,11 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.'
     Route::get('/reports/active', [BookingReportController::class, 'activeBookings'])->name('reports.active');
     Route::get('/reports/history', [BookingReportController::class, 'historyBookings'])->name('reports.history');
     Route::get('/reports/history/{booking}', [BookingReportController::class, 'show'])->name('reports.show');
-    Route::get('/reports/history/print', [BookingReportController::class, 'printHistory'])->name('reports.print');
+    Route::get('/reports/print', [BookingReportController::class, 'printHistory'])->name('reports.print');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
 });
 
 require __DIR__.'/auth.php';
