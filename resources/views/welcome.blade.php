@@ -461,9 +461,11 @@
                         <div class="text-sm space-y-2">
                             <p class="text-purple-400">&copy; {{ date('Y') }} {{ config('app.name', 'Dukunify') }}. All rights reserved.</p>
                             <p class="flex items-center justify-center gap-2 text-purple-300">
-                                Dibuat dengan 
-                                <span class="text-red-400 animate-pulse text-xl">♥</span> 
-                                di Bandung
+                                Dibuat oleh 
+                                <span class="text-red-400 animate-pulse text-xl">
+                                Raden Daffa Firasyan Adikusumah
+                                &
+                                Rilga Lingga Wisesa</span> 
                             </p>
                             <p class="text-xs text-purple-500/70 italic">
                                 "Menghubungkan Dunia Material dengan Spiritual"

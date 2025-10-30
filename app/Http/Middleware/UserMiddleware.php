@@ -20,6 +20,6 @@ class UserMiddleware
             return $next($request);
         }
 
-        return redirect('/admin/dashboard');
+        abort(403, 'Unauthorized access.');
     }
 }

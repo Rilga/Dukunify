@@ -15,6 +15,6 @@ class AdminMiddleware
             return $next($request);
         }
 
-        return redirect('/dashboard');
+        abort(403, 'Unauthorized access.');
     }
 }
