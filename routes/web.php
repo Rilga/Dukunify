@@ -34,8 +34,9 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
     Route::post('/cart/add/{dukun}', [CartController::class, 'store'])->name('cart.store');
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::delete('/cart/remove/{cart}', [CartController::class, 'destroy'])->name('cart.destroy');
+    
     Route::post('/booking/store', [BookingController::class, 'store'])->name('booking.store');
-    Route::get('/booking/store', [BookingController::class, 'store'])->name('booking.store');
+    
     Route::get('/my-bookings', [BookingController::class, 'index'])->name('booking.index');
     Route::get('/my-bookings/{booking}', [BookingController::class, 'show'])->name('booking.show');
     Route::post('/my-bookings/{booking}/request-completion', [BookingController::class, 'requestCompletion'])
