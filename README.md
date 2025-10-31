@@ -54,4 +54,4 @@ Sistem ini memiliki dua peran utama: **Admin** dan **User (Anggota/Klien)**.
 
 ## Demo Website
 
-[Tonton Video Demo Penjelasan Website di Sini]([LINK_VIDEO_DEMO_ANDA])
+Demo : https://drive.google.com/file/d/1BDoQp0cgPB6mqDWfsb5chYa-wvOWKdCC/view?usp=sharing
