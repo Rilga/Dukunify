@@ -48,7 +48,7 @@ Sistem ini memiliki dua peran utama: **Admin** dan **User (Anggota/Klien)**.
 
 ## Skema Database (ERD)
 
-public/Database.png
+![Logo](public/Database.png)
 
 ---
 
