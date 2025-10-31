@@ -48,7 +48,7 @@ Sistem ini memiliki dua peran utama: **Admin** dan **User (Anggota/Klien)**.
 
 ## Skema Database (ERD)
 
-![Skema Database Dukunify]([GANTI_DENGAN_PATH_GAMBAR_ERD_ANDA.png])
+public/Database.png
 
 ---
 
